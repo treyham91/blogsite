@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href={% url 'home' %}>Home</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -33,10 +33,10 @@
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Programming</a>
-                    <a class="dropdown-item" href="#">Web Development</a>
-                    <a class="dropdown-item" href="#">Data Science/AI</a>
-                    <a class="dropdown-item" href="#">General</a>
+                    <a class="dropdown-item" href={% url 'programming' %}>Programming</a>
+                    <a class="dropdown-item" href={% url 'web' %}>Web Development</a>
+                    <a class="dropdown-item" href={% url 'data' %}>Data Science/AI</a>
+                    <a class="dropdown-item" href={% url 'general' %}>General</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -45,12 +45,12 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search Posts" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
 </nav>
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
+<div class="jumbotron jumbotron-fluid" style="background-color: lightskyblue;">
+    <div class="container" style="text-align: center;">
         <h1 class="display-4">A Blog Site</h1>
         <p class="lead">with categories and such.</p>
     </div>
@@ -58,28 +58,20 @@
 <div class="recent-posts">
     <h1 class="display-4" style="text-align: center;">Recent Posts</h1>
 </div>
-<div class="modal-container">
+<div style="display: flex;">
+{% block content %}
     {% for posts in recent_posts %}
-        <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ post.title }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{ posts.body }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Like</button>
-                        <button type="button" class="btn btn-primary">Comment</button>
-                    </div>
-                </div>
+        <div class="card" style="width: 18rem; padding: 10px; margin-left: 30px; margin-top: 10px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ posts.title }}</h5>
+                <p class="card-subtitle" style="font-size: 12px;">{{ posts.topic_type }}</p>
+                <p class="card-text" style="margin-top: 5px;">{{ posts.post_body }}</p>
+                <a href="#" class="card-link">Comment</a>
+                <a href="#" class="card-link">Like</a>
             </div>
         </div>
     {% endfor %}
+{% endblock %}
 </div>
 </body>
 </html>
