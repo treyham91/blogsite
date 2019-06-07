@@ -43,35 +43,15 @@
                 <a class="nav-link" href="#">Subscribe</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" action={% url 'search' %}>
+            {% csrf_token %}
             <input class="form-control mr-sm-2" type="search" placeholder="Search Posts" aria-label="Search">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
 </nav>
-<div class="jumbotron jumbotron-fluid" style="background-color: lightskyblue;">
-    <div class="container" style="text-align: center;">
-        <h1 class="display-4">A Blog Site</h1>
-        <p class="lead">with categories and such.</p>
-    </div>
-</div>
-<div class="recent-posts">
-    <h1 class="display-4" style="text-align: center;">Recent Posts</h1>
-</div>
-<div style="display: flex;">
-{% block content %}
-    {% for posts in recent_posts %}
-        <div class="card" style="width: 18rem; padding: 10px; margin-left: 30px; margin-top: 10px;">
-            <div class="card-body">
-                <h5 class="card-title">{{ posts.title }}</h5>
-                <p class="card-subtitle" style="font-size: 12px;">{{ posts.topic_type }}</p>
-                <p class="card-text" style="margin-top: 5px;">{{ posts.post_body }}</p>
-                <a href="#" class="card-link">Comment</a>
-                <a href="#" class="card-link">Like</a>
-            </div>
-        </div>
-    {% endfor %}
-{% endblock %}
+<div id="content">
+    {% block content %}{% endblock %}
 </div>
 </body>
 </html>
