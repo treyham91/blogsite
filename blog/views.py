@@ -6,7 +6,7 @@ from blog.models import BlogPost
 
 def search(request):
     if request.GET:
-        post_search = request.GET.get('search')
+        post_search = request.GET['search']
         try:
             post = BlogPost.objects.filter(post_body__contains=post_search)
             return render(request, 'search_results.html', {'posts': post})
