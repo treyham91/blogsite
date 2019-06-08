@@ -2,11 +2,11 @@
 <html lang="en">
 {% extends 'index.html' %}
 {% block content %}
-    <div class="recent-posts">
-        <h1 class="display-4" style="text-align: center;">Search Results</h1>
+    <div class="data-posts">
+        <h1 class="display-4" style="text-align: center;">Data Science/AI Posts</h1>
     </div>
     {% if posts %}
-        {% for post in posts %}
+        {% for post in data_posts %}
             <div class="card" style="width: 40rem; padding: 10px; margin: 20px auto auto auto;" >
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>

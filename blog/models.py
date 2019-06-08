@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 
 class BlogUser(User):
@@ -36,6 +37,12 @@ class BlogComment(models.Model):
 class BlogLike(models.Model):
     post = models.ForeignKey('BlogPost', on_delete=models.CASCADE)
     user = models.ForeignKey('BlogUser', on_delete=models.CASCADE)
+
+
+class BlogPostForm(ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ['title', 'topic_type', 'post_body']
 
 
 
