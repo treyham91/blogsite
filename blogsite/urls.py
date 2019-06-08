@@ -19,7 +19,7 @@ from blog.views import Home
 from django.conf.urls import url
 
 urlpatterns = [
-    url(r'^$', Home.as_view()),
+    url(r'^$', Home.as_view(), name='home'),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
 ]

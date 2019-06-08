@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'index.html' %}
+{% block content %}
+    <div class="jumbotron jumbotron-fluid" style="background-color: lightskyblue;">
+        <div class="container" style="text-align: center;">
+            <h1 class="display-4">A Blog Site</h1>
+            <p class="lead">with categories and such.</p>
+        </div>
+    </div>
+    <div class="recent-posts">
+        <h1 class="display-4" style="text-align: center;">Recent Posts</h1>
+    </div>
+    <div style="display: flex;">
+        {% for posts in recent_posts %}
+            <div class="card" style="width: 18rem; padding: 10px; margin-left: 30px; margin-top: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ posts.title }}</h5>
+                    <p class="card-subtitle" style="font-size: 12px;">{{ posts.topic_type }}</p>
+                    <p class="card-text" style="margin-top: 5px;">{{ posts.post_body }}</p>
+                    <a href="#" class="card-link">Comment</a>
+                    <a href="#" class="card-link">Like</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+</html>
