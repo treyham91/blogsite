@@ -22,6 +22,7 @@ def blog_post_form(request):
         form = BlogPostForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
+            return render(request, 'post_success.html', {})
         else:
             print('FORM ERROR')
 
@@ -36,7 +37,7 @@ class Home(ListView):
 
 class ProgrammingBlogPosts(ListView):
     context_object_name = 'prog_posts'
-    queryset = BlogPost.objects.filter(topic_type='PROG')
+    queryset = BlogPost.objects.filter(topic_type='PRGR')
     template_name = 'programming.html'
 
 
