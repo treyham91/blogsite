@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 from django.views.generic import ListView
-from blog.models import BlogPost, BlogPostForm
+from blog.models import BlogPost, BlogPostForm, BlogSubscribeForm
 
 
 def search(request):
@@ -27,6 +27,19 @@ def blog_post_form(request):
             print('FORM ERROR')
 
     return render(request, 'blog_post_form.html', {'form': form})
+
+
+def blog_subscribe_form(request):
+    subscribe_form = BlogSubscribeForm()
+    if request.method == 'POST':
+        subscribe_form = BlogSubscribeForm(request.POST)
+        if subscribe_form.is_valid():
+            subscribe_form.save(commit=True)
+            return render(request, 'subscribe_success.html', {})
+        else:
+            print('FORM ERROR')
+
+    return render(request, 'blog_subscribe_form.html', {'subscribe_form': subscribe_form})
 
 
 class Home(ListView):

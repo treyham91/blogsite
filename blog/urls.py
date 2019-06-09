@@ -5,7 +5,8 @@ from blog.views import (
     DataScienceAIBlogPosts,
     GeneralBlogPosts,
     search,
-    blog_post_form
+    blog_post_form,
+    blog_subscribe_form
 )
 
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path('posts/general', GeneralBlogPosts.as_view(), name='general'),
     path('search/', search, name='search'),
     path('post/', blog_post_form, name='post_form'),
+    path('subscribe/', blog_subscribe_form, name='subscribe_form'),
 ]
