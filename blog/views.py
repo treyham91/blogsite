@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import Http404
 from django.views.generic import ListView
-from blog.models import BlogPost, BlogPostForm, BlogSubscribeForm
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import logout
+from blog.models import BlogPost, BlogPostForm, BlogSubscribeForm, CreateUserForm
 
 def search(request):
     if request.GET:
@@ -40,6 +42,28 @@ def blog_subscribe_form(request):
             print('FORM ERROR')
 
     return render(request, 'blog_subscribe_form.html', {'subscribe_form': subscribe_form})
+
+
+def create_new_user(request):
+    user_creation_form = CreateUserForm()
+    if request.POST:
+        if user_creation_form.is_valid():
+            user_creation_form.save(commit=True)
+            return render(request, 'home.html', {})
+        else:
+            print('FORM ERROR')
+
+    return render(request, 'user_creation_form.html', {'user_creation_form': user_creation_form})
+
+
+def logout_view(request):
+    logout(request)
+
+
+class UserLogin(LoginView):
+    template_name = 'LoginForm.html'
+    redirect_field_name = 'home.html'
+    authentication_form = AuthenticationForm
 
 
 class Home(ListView):

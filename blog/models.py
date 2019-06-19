@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
 
 
 class BlogUser(User):
@@ -29,6 +31,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=50, default='Title')
     post_body = models.TextField(max_length=1000)
     date_posted = models.DateTimeField(auto_now=True)
+    post_likes = models.IntegerField()
 
     def __str__(self):
         return 'Topic:%s Title:%s Post:%s' % self.topic_type, self.title, self.post_body
@@ -49,6 +52,12 @@ class BlogLike(models.Model):
 
     def __str__(self):
         return 'Post:%s User:%s' % self.post, self.user
+
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'password1', 'password2']
 
 
 class BlogPostForm(ModelForm):
