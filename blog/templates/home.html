@@ -13,17 +13,16 @@
     </div>
     <div>
         {% for posts in recent_posts %}
-            <div class="card" style="width: 40rem; padding: 10px; margin: 20px auto auto auto;" >
+            <div class="card" style="width: 40rem; padding: 10px; margin: 20px auto auto auto;">
                 <div class="card-body">
                     <h5 class="card-title">{{ posts.title }}</h5>
                     <p class="card-subtitle" style="font-size: 12px;">{{ posts.topic_type }}</p>
                     <p class="card-text" style="margin-top: 5px;">{{ posts.post_body }}</p>
-                    <a href="#" class="card-link">Comment</a>
-                    <a href="#" class="card-link">Like</a>
+                    {% for comment in comments %}<p>{{ forloop.counter0 }}</p>{% endfor %}<a href="#" class="card-link">Comment</a>
+                    <a id="like-link" href="#" class="card-link">Like</a>
                     <a href="#" class="card-link">Read More</a>
                 </div>
             </div>
         {% endfor %}
-    </div>
 {% endblock %}
 </html>

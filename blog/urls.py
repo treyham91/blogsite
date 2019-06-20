@@ -6,7 +6,10 @@ from blog.views import (
     GeneralBlogPosts,
     search,
     blog_post_form,
-    blog_subscribe_form
+    blog_subscribe_form,
+    login_view,
+    logout_view,
+    create_new_user
 )
 
 
@@ -18,4 +21,7 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('post/', blog_post_form, name='post_form'),
     path('subscribe/', blog_subscribe_form, name='subscribe_form'),
+    path('login/', login_view, name='login_form'),
+    path('logout/', logout_view, name='logout'),
+    path('create/', create_new_user, name='create_user_form'),
 ]
