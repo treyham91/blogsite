@@ -12,6 +12,10 @@ class BlogUser(User):
         return '%s %s email:%s' % self.first_name, self.last_name, self.email
 
 
+class BlogSiteUser(models.Model):
+    user = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
+
+
 class BlogPost(models.Model):
     PROGRAMMING = 'PRGR'
     WEB = 'WEB'
@@ -56,7 +60,7 @@ class BlogLike(models.Model):
 
 class CreateUserForm(UserCreationForm):
     class Meta:
-        model = get_user_model()
+        model = BlogUser
         fields = ['username', 'password1', 'password2']
 
 
